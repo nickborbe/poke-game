@@ -1,3 +1,4 @@
+let theGame;
 class Game{
     constructor(){
         player: new Player();
@@ -35,4 +36,13 @@ class Poke{
 
     }
         
+}
+
+
+document.getElementById('start-game').onclick = ()=>{
+    console.log('starting')
+    theGame = new Game();
+    theGame.ctx = document.getElementById('theCanvas').getContext('2d');
+
+
 }
