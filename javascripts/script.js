@@ -8,14 +8,13 @@ class Game{
     }
 
     animate(){
-        console.log('animatin')
         this.ctx.clearRect(0,0,1000,500);
         this.draw(this.player);
 
 
 
 
-        window.requestAnimationFrame(this.animate)
+        window.requestAnimationFrame(this.animate.bind(this))
     }
 
     draw(what){
@@ -75,9 +74,7 @@ class Poke{
 
 document.getElementById('start-game').onclick = ()=>{
     theGame = new Game();
-    theGame.animate()
-
-
+    theGame.animate();
 }
 
 document.onkeydown = (e)=>{
