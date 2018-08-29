@@ -22,8 +22,12 @@ class Player{
 class Poke{
     constructor(){
 
-     // everything from db
-     this.currentLevel = 5;
+
+
+     // get everything from db
+     
+     this.currentHP = this.hp;
+
     }
         
 }
