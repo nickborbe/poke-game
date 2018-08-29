@@ -10,15 +10,20 @@ class Game{
     animate(){
         this.ctx.clearRect(0,0,1000,500);
         this.draw(this.player);
-
-
-
+        this.pokemonInScreen.forEach((onePoke)=>{
+            this.draw(onePoke)
+        })
 
         window.requestAnimationFrame(this.animate.bind(this))
     }
 
     draw(what){
         this.ctx.fillRect(what.x, what.y, what.width, what.height)
+    }
+
+    spawnRandomPokemon(){
+        this.pokemonInScreen.push(new Poke(Math.floor(Math.random()*1000),Math.floor(Math.random()*500)))
+
     }
 }
 
@@ -38,16 +43,16 @@ class Player{
     move(direction){
         switch(direction){
             case 'ArrowLeft':
-            this.x -=5;
+            this.x -=10;
             break;
             case 'ArrowRight':
-            this.x +=5;
+            this.x +=10;
             break;
             case 'ArrowUp':
-            this.y -=5;
+            this.y -=10;
             break;
             case 'ArrowDown':
-            this.y +=5;
+            this.y +=10;
             break;
         }
     }
@@ -59,8 +64,11 @@ class Player{
 
 
 class Poke{
-    constructor(){
-
+    constructor(x,y){
+        this.width = 20;
+        this.height= 20;
+        this.x = x;
+        this.y = y;
 
 
      // get everything from db
