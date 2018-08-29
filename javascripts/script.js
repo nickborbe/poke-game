@@ -5,6 +5,7 @@ class Game{
         this.playersInScreen = [];
         this.pokemonInScreen = [];
         this.ctx = document.getElementById('theCanvas').getContext('2d');
+        this.frames = 0;
     }
 
     animate(){
@@ -13,7 +14,9 @@ class Game{
         this.pokemonInScreen.forEach((onePoke)=>{
             this.draw(onePoke)
         })
+        if(this.frames%2000===199)this.spawnRandomPokemon()
 
+        this.frames++;
         window.requestAnimationFrame(this.animate.bind(this))
     }
 
