@@ -75,7 +75,7 @@ class Poke{
 
 
      // get everything from db
-     
+     this.moves = []
      this.currentHP = this.hp;
 
     }
