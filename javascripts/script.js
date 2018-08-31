@@ -14,7 +14,8 @@ class Game{
         this.pokemonInScreen.forEach((onePoke)=>{
             this.draw(onePoke)
         })
-        if(this.frames%2000===199)this.spawnRandomPokemon()
+        this.player.move()
+        if(this.frames%2000===199) this.spawnRandomPokemon()
 
         this.frames++;
         window.requestAnimationFrame(this.animate.bind(this))
@@ -41,23 +42,20 @@ class Player{
         this.height = 30;
         this.imgsrc=""
         this.pokemonOnDeck = [];
+        this.keysPressed=[];
     }
 
-    move(direction){
-        switch(direction){
-            case 'ArrowLeft':
-            this.x -=10;
-            break;
-            case 'ArrowRight':
-            this.x +=10;
-            break;
-            case 'ArrowUp':
-            this.y -=10;
-            break;
-            case 'ArrowDown':
-            this.y +=10;
-            break;
-        }
+    move(){
+
+        if(this.keysPressed.includes("ArrowLeft"))
+        this.x-=3;
+        if(this.keysPressed.includes("ArrowRight"))
+        this.x+=3;
+        if(this.keysPressed.includes("ArrowUp"))
+        this.y-=3;
+        if(this.keysPressed.includes("ArrowDown"))
+        this.y+=3;
+     
     }
    
 
@@ -91,7 +89,19 @@ document.getElementById('start-game').onclick = ()=>{
 document.onkeydown = (e)=>{
     if(e.key === 'ArrowLeft'||e.key === 'ArrowRight'||e.key === 'ArrowUp'||e.key === 'ArrowDown'){
         e.preventDefault();
-        theGame.player.move(e.key);
+        if(!theGame.player.keysPressed.includes(e.key))
+        theGame.player.keysPressed.push(e.key);
+
+        console.log(theGame.player.keysPressed)
+    }
+    
+}
+
+document.onkeyup = (e)=>{
+    if(e.key === 'ArrowLeft'||e.key === 'ArrowRight'||e.key === 'ArrowUp'||e.key === 'ArrowDown'){
+        var index = theGame.player.keysPressed.indexOf(e.key);
+        theGame.player.keysPressed.splice(index, 1);
+        console.log(theGame.player.keysPressed)
     }
     
 }
